@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+pokemons
+{% endblock %}
+
+{% block body %}
+    <header class="container mt-4">
+        {% include '_navbar.html.twig' %}
+    </header>
+
+    <main>
+        <div class="container mt-4 mb-3">
+
+            <div class="d-flex justify-content-center mb-4">
+                <a href="{{ path('pokemon_tri', {'param':'capture'}) }}" class="btn btn-outline-primary me-4 rounded-4">Trier par pokémon capturé</a>
+                <a href="{{ path('pokemon_tri', {'param':'name'}) }}" class="btn btn-outline-primary rounded-4">Trier par nom</a>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                {% for pokemon in pokemons %}
+                    <div class="col">
+                        <div class="card text-center h-100 shadow-sm">
+                            <div class="d-flex align-items-center justify-content-center position-relative fw-bold">
+                                <span>{{ pokemon.nom }}</span>
+
+                                <a href="{{ path('pokemon_capture', {'id':pokemon.id}) }}"
+                                   class="position-absolute end-0 me-4">
+                                    {% if pokemon.estCapture %}
+                                        <img src="{{ asset('img/icon/pokeball-ok.jpg') }}" alt="capturé" style="height: 20px;">
+                                    {% else %}
+                                        <img src="{{ asset('img/icon/pokeball-ko.jpg') }}" alt="non capturé" style="height: 20px;">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <a href="{{ path('pokemon_detail', {id:pokemon.id}) }}"><img src="{{ asset('img/pokemon/' ~ pokemon.image) }}" class="img-fluid" alt="{{ pokemon.nom }}"></a>
+
+                            </div>
+                            {% include '_bares.html.twig' %}
+                            <div class="text-end">
+
+                                {% if pokemon.estCapture %}
+                                <a href="{{ path('pokemon_capture', {'id':pokemon.id}) }}">
+                                    <button class="btn btn-outline-danger w-50 me-4">Relâcher</button>
+                                </a>
+                                {% else %}
+                                <a href="{{ path('pokemon_capture', {'id':pokemon.id}) }}">
+                                    <button class="btn btn-outline-success w-50 me-4">Capturer</button>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+    
+
+{% endblock %}
+

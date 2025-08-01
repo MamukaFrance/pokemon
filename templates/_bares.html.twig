@@ -1,0 +1,14 @@
+<div class="progress mb-3 mt-1 ms-2" style="height: 20px; width: 95%; min-width: 200px;">
+    <div class="progress-bar bg-danger" role="progressbar"
+         style="width: {{ pokemon.attaque }}%;"
+         aria-valuenow="{{ pokemon.attaque }}" aria-valuemin="0" aria-valuemax="100">
+        {{ pokemon.attaque }}%
+    </div>
+</div>
+<div class="progress ms-2 mb-3" style="height: 20px; width: 95%; min-width: 200px;">
+    <div class="progress-bar bg-success" role="progressbar"
+         style="width: {{ pokemon.defense }}%;"
+         aria-valuenow="{{ pokemon.defense }}" aria-valuemin="0" aria-valuemax="100">
+        {{ pokemon.defense }}%
+    </div>
+</div>

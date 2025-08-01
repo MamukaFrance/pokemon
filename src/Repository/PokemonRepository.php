@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Repository;
+
+use App\Entity\Pokemon;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+
+/**
+ * @extends ServiceEntityRepository<Pokemon>
+ */
+class PokemonRepository extends ServiceEntityRepository
+{
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Pokemon::class);
+    }
+
+    public  function sortByName()
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder->orderBy('p.nom', 'ASC');
+        return $queryBuilder->getQuery()->getResult();
+
+    }
+
+    public  function sortByCapture()
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        //$queryBuilder->andWhere('p.estCapture = true ');
+        $queryBuilder->orderBy('p.estCapture', 'DESC');
+        return $queryBuilder->getQuery()->getResult();
+
+    }
+
+    //    /**
+    //     * @return Pokemon[] Returns an array of Pokemon objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('p.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Pokemon
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+}

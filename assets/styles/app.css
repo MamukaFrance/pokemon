@@ -1,3 +1,22 @@
-body {
-    background-color: skyblue;
+/*body {*/
+/*    background-color: skyblue;*/
+/*}*/
+
+a{
+    text-decoration: none;
+}
+
+.bgd a {
+    display: flex;
+    justify-content: center;
+
+}
+
+.bgd a img{
+    display: block;
+    width: 20%;
+    height: 40%;
+}
+.pokemon_item{
+
 }

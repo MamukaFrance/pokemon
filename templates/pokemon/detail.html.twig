@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+detail
+{% endblock %}
+
+{% block body %}
+    <header class="container mt-4">
+        {% include '_navbar.html.twig' %}
+    </header>
+    <div class="container mt-6">
+    <div class="d-flex justify-content-center">
+    <div>
+    <img src="{{ asset('img/pokemon/' ~ pokemon.image) }}" class="img-fluid" alt="{{ pokemon.nom }}">
+    </div>
+    <div>
+       <p>Attaque {{ pokemon.attaque }}</p>
+        <p>Défence {{ pokemon.defense }}</p>
+    </div>
+        <div>
+        {% include '_bares.html.twig' %}
+        </div>
+    </div>
+
+
+
+    <p class="text-center">{{ pokemon.description }}</p>
+    </div>
+
+
+{% endblock %}
+
+
