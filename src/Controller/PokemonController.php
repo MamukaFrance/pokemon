@@ -47,11 +47,11 @@ final class PokemonController extends AbstractController
     #[Route('/tri/{param}', name: 'pokemon_tri')]
     public function tri(string $param, PokemonRepository $pokemonRepository, EntityManagerInterface $em): Response
     {
-        if ($param == 'name'){
-            $pokemons = $pokemonRepository->sortByName();
-        }elseif ($param == 'capture'){
-            $pokemons = $pokemonRepository->sortByCapture();
-        }
+        $pokemons = match ($param) {
+            'name' => $pokemonRepository->sortByName(),
+            'capture' => $pokemonRepository->sortByCapture(),
+            default => $pokemonRepository->findAll(),
+        };
 
         return $this->render('pokemon/list.html.twig', ['pokemons' => $pokemons]);
     }
